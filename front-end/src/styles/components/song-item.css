@@ -1,0 +1,37 @@
+.song-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 25px;
+  border-radius: var(--border-radius-s);
+  transition: background-color var(--transition-function)
+    var(--transition-duration);
+  gap: 15px;
+}
+.song-item:hover {
+  background-color: var(--green-800);
+  text-decoration: none;
+}
+.song-item__name:hover {
+  text-decoration: underline;
+}
+.song-item__image {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-s);
+}
+.song-item__album {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.song-item__number-album {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+@media (max-width: 480px) {
+  .song-item {
+    padding: 10px 16px;
+} }

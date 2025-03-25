@@ -1,0 +1,66 @@
+.artist {
+  overflow: hidden;
+  margin-top: -60px;
+}
+.artist__header {
+  --_shade: hsl(0deg 0% 0% / 25%);
+  display: flex;
+  align-items: end;
+  padding: 25px;
+  height: 50vh;
+  background-size: cover;
+  background-position-y: 20%;
+}
+.artist__name {
+  font-size: 80px;
+}
+.artist__body {
+  padding: 39px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+
+
+.artist__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.artist__verified {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #1db954;
+}
+.verified-icon {
+  margin-right: 5px;
+  color: #1db954;
+}
+.artist__buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.btn-1 {
+  background-color: var(--red);
+  color: #e0e0e0;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.btn-2 {
+  background-color: transparent;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 1px solid white;
+  border-radius: 20px;
+  cursor: pointer;
+}

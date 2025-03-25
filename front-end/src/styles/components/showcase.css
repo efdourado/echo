@@ -1,0 +1,39 @@
+.showcase {
+  height: clamp(45vh, 50vh, 55vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  margin-top: -60px;
+
+  background: url("/bg.jpeg") center center/cover;
+  background-color: rgba(0, 0, 0, 0.6);
+  background-blend-mode: color;
+}
+.showcase-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 5%;
+}
+.showcase-container h2 {
+  padding-top: 60px;
+  font-size: clamp(1.8rem, 4vw, 6rem);
+}
+.showcase-container p {
+  margin: 15px 0;
+  font-size: clamp(0.75rem, 1.5vw, 1.1rem);
+  max-width: 800px;
+}
+
+@media (max-width: 640px) {
+  .showcase {
+    height: 25vh;
+  }
+  .showcase-container h2 {
+    font-size: 2rem;
+  }
+  .showcase-container p {
+    font-size: 0.9rem;
+} }

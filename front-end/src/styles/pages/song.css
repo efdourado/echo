@@ -1,0 +1,65 @@
+.song {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  flex: 1;
+}
+.song__container {
+  margin: 0 20px;
+  border-top-right-radius: 15px;
+  background-image: linear-gradient(
+    to bottom,
+    var(--green-800),
+    var(--green-950)
+  );
+  border-top-left-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+}
+.song__image-container {
+  box-shadow: 0 0 25px 10px var(--green-1000-25);
+}
+.song__bar {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  place-items: center;
+  background-color: black;
+  color: #e0e0e0;
+  padding: 16px 25px;
+  gap: 15px;
+}
+.song__artist-image {
+  justify-self: start;
+  border-radius: var(--border-radius-s);
+  overflow: hidden;
+}
+.song__name {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+@media (max-width: 1280px) {
+  .song__name {
+    font-size: 16px;
+  }
+  .song__bar {
+    grid-template-columns: auto 2fr 3fr;
+  }
+  .song__info {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+} }
+@media (max-width: 800px) {
+  .song__bar {
+    grid-template-columns: auto 1fr;
+} }
+@media (max-width: 480px) {
+  .song__artist-image {
+    width: 50px;
+    height: 50px;
+  }
+  .song__info, .song__name {
+    font-size: 13px;
+} }
