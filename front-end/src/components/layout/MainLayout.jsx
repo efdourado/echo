@@ -73,7 +73,7 @@ const MainLayout = ({ type }) => {
           ) : null}
       </div>
 
-      <Footer companyName="Solo" />
+      <Footer companyName="Echo" />
     </>
   );
 };
