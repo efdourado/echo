@@ -4,7 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 import Showcase from "../common/Showcase";
-import EventsHero from "../hero/EventsHero"
+import EventsHero from "../sections/hero/EventsHero";
 
 import ItemList from "../common/ItemList";
 import { artistArray } from "../../assets/db/artists";
@@ -33,7 +33,7 @@ const MainLayout = ({ type }) => {
             type="songs"
             showYear={true}
             showPlays={true}
-            seeMorePlacement ="top"
+            seeMorePlacement="top"
           />
         ) : null}
 
@@ -41,12 +41,15 @@ const MainLayout = ({ type }) => {
           <section className="recent-songs-section">
             <SongList
               title="Recently Played"
-              songsArray={songsArray}
-              onPlay={(songId) => {
-                const song = songsArray.find((s) => s._id === songId);
-                if (song) playTrack(song);
-              }}
+              songs={songsArray.slice(0, 5)}
               showCount={false}
+              onMenuClick={(songId, target) => {
+
+
+                console.log(`menu clicked for song ${songId}`, target);
+
+
+              }}
             />
           </section>
           {type === "songs" || type === undefined ? (
@@ -59,38 +62,38 @@ const MainLayout = ({ type }) => {
               type="songs"
               showYear={true}
               showPlays={true}
-              seeMorePlacement ="bottom"
-            />
-        ) : null}
-        </div>
-        {type === "artists" || type === undefined ? (
-            <ItemList
-              title="Artists"
-              items={7}
-              itemsArray={artistArray}
-              path="/artists"
-              idPath="/artist"
-              type="artists"
-              rounded={true}
-              seeMorePlacement ="top"
+              seeMorePlacement="bottom"
             />
           ) : null}
+        </div>
+        {type === "artists" || type === undefined ? (
+          <ItemList
+            title="Artists"
+            items={7}
+            itemsArray={artistArray}
+            path="/artists"
+            idPath="/artist"
+            type="artists"
+            rounded={true}
+            seeMorePlacement="top"
+          />
+        ) : null}
       </div>
 
       <EventsHero
-  title="Próximos Eventos"
-  subtitle="Experiências musicais inesquecíveis que vão transformar sua conexão com a arte"
-  ctaText="Comprar Ingressos"
-  bgImage="/sc_pg.jpeg"
-  featuredEvent={{
-    day: "24",
-    month: "MAI",
-    name: "Festival Beats Urbanos",
-    location: "São Paulo - SP",
-    time: "22:00h",
-    artists: ["MC Zaac", "Luísa Sonza", "Djonga", "Tasha & Tracie"]
-  }}
-/>
+        title="Próximos Eventos"
+        subtitle="Experiências musicais inesquecíveis que vão transformar sua conexão com a arte"
+        ctaText="Comprar Ingressos"
+        bgImage="/sc_pg.jpeg"
+        featuredEvent={{
+          day: "24",
+          month: "MAI",
+          name: "Festival Beats Urbanos",
+          location: "São Paulo - SP",
+          time: "22:00h",
+          artists: ["MC Zaac", "Luísa Sonza", "Djonga", "Tasha & Tracie"],
+        }}
+      />
 
       <Footer companyName="Echo" />
     </>

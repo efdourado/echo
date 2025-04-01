@@ -24,6 +24,15 @@ a:hover {
   --light-red: #cb321b;
   --gray: #ccc;
 
+
+  --accent-color: #FF7A00;
+  --accent-color-hover: #E06C00;
+  --text-secondary: #aaa;
+  --border-color: #333;
+  --player-bg: rgba(30, 30, 30, 0.8);
+  --progress-bg: #444;
+
+
   --transition-duration: 200ms;
   --transition-function: ease;
 

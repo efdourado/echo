@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useMemo, useState, useEffect } from 'react';
+import React, { createContext, useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { songsArray } from '../assets/db/songs';
 import { useAudio } from '../hooks/useAudio';
@@ -6,122 +6,86 @@ import { useAudio } from '../hooks/useAudio';
 export const PlayerContext = createContext();
 
 export const PlayerProvider = ({ children }) => {
-  const [currentTrack, setCurrentTrack] = useState(null);
-  const [queue, setQueue] = useState([]);
-  const [history, setHistory] = useState([]);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.7);
-  const [isMuted, setIsMuted] = useState(false);
-  
-  const { 
-    audioRef, 
-    isReady, 
-    duration, 
-    currentTime, 
-    seek,
-    error: audioError
-  } = useAudio(currentTrack?.audio || '', {
-    volume: isMuted ? 0 : volume,
-    isPlaying
+  const [state, setState] = useState({
+    currentTrack: null,
+    queue: [],
+    history: [],
+    isPlaying: false,
+    volume: 0.7,
+    isMuted: false
   });
 
-  const getRandomSongId = useCallback((artist, excludeId = null) => {
-    const artistSongs = songsArray.filter(
-      (song) => song.artist === artist && song._id !== excludeId
-    );
-    return artistSongs.length > 0 
-      ? artistSongs[Math.floor(Math.random() * artistSongs.length)]._id 
-      : null;
+  const audio = useAudio({
+    src: state.currentTrack?.audio || '',
+    volume: state.isMuted ? 0 : state.volume,
+    isPlaying: state.isPlaying,
+    onPlay: () => setState(prev => ({ ...prev, isPlaying: true })),
+    onPause: () => setState(prev => ({ ...prev, isPlaying: false })),
+    onEnded: () => skipTrack('forward')
+  });
+
+  const getRandomTracks = useCallback((artist, excludeId) => {
+    return songsArray
+      .filter(song => song.artist === artist && song._id !== excludeId)
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 2);
   }, []);
 
   const playTrack = useCallback((track) => {
-    if (!track?.audio) return;
+    if (!track?.audio) {
+      console.error("No audio source for this track");
+      return;
+    }
 
-    setCurrentTrack({
-      ...track,
-      randomIdFromArtist: getRandomSongId(track.artist, track._id),
-      randomId2FromArtist: getRandomSongId(track.artist, track._id),
-    });
-    setIsPlaying(true);
-    setHistory(prev => [track, ...prev].slice(0, 50));
-  }, [getRandomSongId]);
+    const [randomTrack1, randomTrack2] = getRandomTracks(track.artist, track._id);
 
-  const pauseTrack = useCallback(() => {
-    setIsPlaying(false);
-  }, []);
+    setState(prev => ({
+      ...prev,
+      currentTrack: {
+        ...track,
+        randomNextId: randomTrack1?._id,
+        randomPrevId: randomTrack2?._id
+      },
+      isPlaying: true,
+      history: [track, ...prev.history.slice(0, 49)]
+    }));
+  }, [getRandomTracks]);
 
   const togglePlayPause = useCallback(() => {
-    if (!currentTrack) return;
-    setIsPlaying(prev => !prev);
-  }, [currentTrack]);
+    if (!state.currentTrack) return;
+    setState(prev => ({ ...prev, isPlaying: !prev.isPlaying }));
+  }, [state.currentTrack]);
 
   const skipTrack = useCallback((direction) => {
-    if (!currentTrack) return;
+    if (!state.currentTrack) return;
     
     const trackId = direction === 'forward' 
-      ? currentTrack.randomId2FromArtist 
-      : currentTrack.randomIdFromArtist;
+      ? state.currentTrack.randomNextId 
+      : state.currentTrack.randomPrevId;
     
-    if (trackId) {
-      const nextTrack = songsArray.find(song => song._id === trackId);
-      if (nextTrack) playTrack(nextTrack);
+    const nextTrack = songsArray.find(song => song._id === trackId);
+    if (nextTrack) {
+      playTrack(nextTrack);
+    } else {
+      setState(prev => ({ ...prev, isPlaying: false }));
     }
-  }, [currentTrack, playTrack]);
+  }, [state.currentTrack, playTrack]);
 
-  const addToQueue = useCallback((track) => {
-    setQueue(prev => [...prev, track]);
-  }, []);
-
-  const clearQueue = useCallback(() => {
-    setQueue([]);
-  }, []);
-
-  const contextValue = useMemo(() => ({
-    currentTrack,
-    isPlaying,
-    queue,
-    history,
-    volume,
-    isMuted,
-    isReady,
-    duration,
-    currentTime,
-    error: audioError,
-    
-    audioRef,
-    
+  const value = useMemo(() => ({
+    ...state,
+    currentTime: audio.currentTime,
+    duration: audio.duration,
+    audioRef: audio.audioRef,
     playTrack,
-    pauseTrack,
     togglePlayPause,
     skipTrack,
-    addToQueue,
-    clearQueue,
-    setVolume,
-    setIsMuted,
-    seek,
-  }), [
-    currentTrack,
-    isPlaying,
-    queue,
-    history,
-    volume,
-    isMuted,
-    isReady,
-    duration,
-    currentTime,
-    audioError,
-    audioRef,
-    playTrack,
-    pauseTrack,
-    togglePlayPause,
-    skipTrack,
-    addToQueue,
-    clearQueue,
-    seek,
-  ]);
+    setVolume: (volume) => setState(prev => ({ ...prev, volume })),
+    setIsMuted: (isMuted) => setState(prev => ({ ...prev, isMuted })),
+    seek: audio.seek
+  }), [state, audio, playTrack, togglePlayPause, skipTrack]);
 
   return (
-    <PlayerContext.Provider value={contextValue}>
+    <PlayerContext.Provider value={value}>
       {children}
     </PlayerContext.Provider>
 ); };

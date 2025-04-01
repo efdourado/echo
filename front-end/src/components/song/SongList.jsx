@@ -1,73 +1,47 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import SongItem from "./SongItem";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-const SongList = ({ 
-  songsArray = [],
-  currentSongId, 
-  isPlaying,
-  onPlay,
-  onMenuClick,
-  title,
+const SongList = ({
+  title = "Songs",
+  songs = [],
   showCount = true,
-  initialVisibleItems = 5,
-  incrementStep = 5
+  onMenuClick,
+  loading = false,
 }) => {
-  if (!songsArray || songsArray.length === 0) {
-    return <div className="empty-message">no songs available</div>;
+  if (loading) {
+    return <div className="song-list-section">Loading songs...</div>;
   }
-  const [visibleItems, setVisibleItems] = useState(initialVisibleItems);
-  const canShowMore = visibleItems < songsArray.length;
-  const hasHiddenItems = songsArray.length > initialVisibleItems;
 
-  const toggleShowMore = () => {
-    setVisibleItems(prev => 
-      prev >= songsArray.length ? initialVisibleItems : prev + incrementStep
-  ); };
+  if (!songs || songs.length === 0) {
+    return <div className="song-list-section">No songs available</div>;
+  }
 
   return (
-    <div className="song-list-container">
-      <div className="song-list__header">
-        <h2 className="song-list__title">{title}</h2>
+    <section className="song-list-section">
+      <div className="song-list-header">
+        <h2 className="song-list-title">{title}</h2>
         {showCount && (
           <span className="song-list-count">
-            {songsArray.length} {songsArray.length === 1 ? 'song' : 'songs'}
+            {songs.length} {songs.length === 1 ? "song" : "songs"}
           </span>
         )}
       </div>
 
-      <div className="song-list">
-        {songsArray.slice(0, visibleItems).map((song) => (
-          <SongItem
-            {...song}
-            key={song._id}
-            isCurrent={currentSongId === song._id}
-            isPlaying={currentSongId === song._id && isPlaying}
-            onPlay={onPlay}
-            onMenuClick={onMenuClick}
-          />
+      <div className="song-list-container">
+        {songs.map((song) => (
+          <SongItem key={song._id} song={song} onMenuClick={onMenuClick} />
         ))}
       </div>
-
-      {hasHiddenItems && (
-        <button 
-          className="show-more-button"
-          onClick={toggleShowMore}
-        >
-          {canShowMore ? (
-            <>
-              See {Math.min(incrementStep, songsArray.length - visibleItems)} more <FontAwesomeIcon icon={faChevronDown} className="show-more-icon" />
-            </>
-          ) : (
-            <>
-              Show less
-              <FontAwesomeIcon icon={faChevronUp} className="show-more-icon" />
-            </>
-          )}
-        </button>
-      )}
-    </div>
+    </section>
 ); };
+
+SongList.propTypes = {
+  title: PropTypes.string,
+  songs: PropTypes.array,
+  showCount: PropTypes.bool,
+  onMenuClick: PropTypes.func,
+  loading: PropTypes.bool,
+};
 
 export default SongList;

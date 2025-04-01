@@ -1,59 +1,72 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { usePlayer } from "../../hooks/usePlayer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay, faPause, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
-import fallbackImage from '../../assets/images/fb.png';
+import {
+  faPlay,
+  faPause,
+  faEllipsisH,
+} from "@fortawesome/free-solid-svg-icons";
+import fallbackImage from "../../assets/images/fb.png";
 import { formatDuration } from "../../helpers/time";
 
-const SongItem = React.memo(({ 
-  artist = "unknown artist",
-  image, 
-  name, 
-  duration = "0", 
-  _id, 
-  isPlaying = false, 
-  isCurrent = false,
-  progress = 0,
-  onPlay,
-  onMenuClick
-}) => {
+const SongItem = React.memo(({ song, onMenuClick }) => {
+  const player = usePlayer();
+
+  if (!song) return null;
+
+  const isCurrent = player?.currentTrack?._id === song._id;
+  const progress =
+    isCurrent && player?.duration
+      ? (player.currentTime / player.duration) * 100
+      : 0;
+  const hasAudio = !!song.audio;
 
   const handlePlayClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    onPlay?.(_id);
+
+    if (!hasAudio) return;
+
+    if (isCurrent) {
+      player.togglePlayPause();
+    } else {
+      player.playTrack(song);
+    }
   };
 
   const handleMenuClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    onMenuClick?.(_id, e.currentTarget);
+    onMenuClick?.(song._id, e.currentTarget);
   };
 
   return (
-    <div 
-      className={`song-item ${isCurrent ? 'song-item--active' : ''}`}
+    <div
+      className={`song-item ${isCurrent ? "song-item--active" : ""} ${
+        !hasAudio ? "song-item--disabled" : ""
+      }`}
       aria-current={isCurrent ? "true" : undefined}
     >
-        <button 
-          className="song-item__play-button"
-          onClick={handlePlayClick}
-          aria-label={isCurrent && isPlaying ? "Pause" : "Play"}
-        >
-          {isCurrent && isPlaying ? (
-            <FontAwesomeIcon icon={faPause} className="song-item__play-icon" />
-          ) : (
-            <FontAwesomeIcon icon={faPlay} className="song-item__play-icon"/>
-          )}
-        </button>
+      <button
+        className="song-item__play-button"
+        onClick={handlePlayClick}
+        aria-label={isCurrent && player?.isPlaying ? "Pause" : "Play"}
+        disabled={!hasAudio}
+      >
+        {isCurrent && player?.isPlaying ? (
+          <FontAwesomeIcon icon={faPause} />
+        ) : (
+          <FontAwesomeIcon icon={faPlay} />
+        )}
+      </button>
 
-      <Link to={`/song/${_id}`} className="song-item__content" tabIndex="0">
+      <div className="song-item__content">
         <div className="song-item__album">
-          <img 
+          <img
             className="song-item__image"
-            src={image || fallbackImage}
-            alt={`${name} cover`}
+            src={song.image || fallbackImage}
+            alt={`${song.name} cover`}
             loading="lazy"
             onError={(e) => {
               e.target.src = fallbackImage;
@@ -61,52 +74,52 @@ const SongItem = React.memo(({
             }}
           />
           <div className="song-item__info">
-            <p className="song-item__name">{name}</p>
-            <p className="song-item__artist">{artist}</p>
+            <p className="song-item__name">{song.name}</p>
+            <p className="song-item__artist">{song.artist}</p>
           </div>
         </div>
-      </Link>
 
-      <div className="song-item__duration">
-        {formatDuration(duration)}
+        <div className="song-item__duration">
+          {formatDuration(song.duration || 0)}
+        </div>
+
+        {isCurrent && (
+          <div
+            className="song-item__progress-container"
+            role="progressbar"
+            aria-valuenow={progress}
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div
+              className="song-item__progress-bar"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+        )}
+
+        <button
+          className="song-item__menu"
+          onClick={handleMenuClick}
+          aria-haspopup="true"
+        >
+          <FontAwesomeIcon icon={faEllipsisH} />
+        </button>
       </div>
-
-      <div 
-        className="song-item__progress-container"
-        role="progressbar"
-        aria-valuenow={isCurrent ? progress : 0}
-        aria-valuemin="0"
-        aria-valuemax="100"
-      >
-        <div 
-          className="song-item__progress-bar"
-          style={{ width: isCurrent ? `${progress}%` : '0%' }}
-        ></div>
-      </div>
-
-      <button 
-        className="song-item__menu"
-        onClick={handleMenuClick}
-        aria-label="More options"
-        aria-haspopup="true"
-      >
-        <FontAwesomeIcon icon={faEllipsisH} />
-      </button>
     </div>
   );
 });
 
 SongItem.propTypes = {
-  artist: PropTypes.string,
-  image: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  duration: PropTypes.number,
-  _id: PropTypes.string.isRequired,
-  isPlaying: PropTypes.bool,
-  isCurrent: PropTypes.bool,
-  progress: PropTypes.number,
-  onPlay: PropTypes.func,
-  onMenuClick: PropTypes.func
+  song: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    artist: PropTypes.string.isRequired,
+    duration: PropTypes.number,
+    image: PropTypes.string,
+    audio: PropTypes.string,
+  }),
+  onMenuClick: PropTypes.func,
 };
 
 export default SongItem;

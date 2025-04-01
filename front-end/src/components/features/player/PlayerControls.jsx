@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { PlayerContext } from "../../context/PlayerContext";
+import { PlayerContext } from "../../../context/PlayerContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faBackwardStep, 
@@ -8,26 +8,25 @@ import {
   faCirclePause 
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Link } from "react-router-dom";
-
 const PlayerControls = () => {
-  const { currentTrack, isPlaying, playTrack, togglePlayPause } = useContext(PlayerContext);
+  const { 
+    currentTrack, 
+    isPlaying, 
+    togglePlayPause,
+    skipTrack 
+  } = useContext(PlayerContext);
+
+  if (!currentTrack) return null;
 
   return (
     <div className="player__main-controls">
-      <Link 
-        to={`/song/${currentTrack.randomIdFromArtist}`} 
+      <button 
         className="player__nav-button"
-        onClick={(e) => {
-          e.preventDefault();
-          playTrack({ 
-            ...currentTrack,
-            _id: currentTrack.randomIdFromArtist
-          });
-        }}
+        onClick={() => skipTrack('backward')}
+        aria-label="Previous track"
       >
         <FontAwesomeIcon icon={faBackwardStep} />
-      </Link>
+      </button>
 
       <button 
         className="player__play-button"
@@ -37,21 +36,14 @@ const PlayerControls = () => {
         <FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} />
       </button>
 
-      <Link 
-        to={`/song/${currentTrack.randomId2FromArtist}`} 
+      <button 
         className="player__nav-button"
-        onClick={(e) => {
-          e.preventDefault();
-          playTrack({ 
-            ...currentTrack,
-            _id: currentTrack.randomId2FromArtist
-          });
-        }}
+        onClick={() => skipTrack('forward')}
+        aria-label="Next track"
       >
         <FontAwesomeIcon icon={faForwardStep} />
-      </Link>
+      </button>
     </div>
-  );
-};
+); };
 
 export default PlayerControls;

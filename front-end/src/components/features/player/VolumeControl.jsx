@@ -1,27 +1,24 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { PlayerContext } from "../../context/PlayerContext";
+import React, { useContext, useRef } from "react";
+import { PlayerContext } from "../../../context/PlayerContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeHigh, faVolumeXmark } from "@fortawesome/free-solid-svg-icons";
 
 const VolumeControl = () => {
-  const { audioRef } = useContext(PlayerContext);
-  const volumeBar = useRef(null);
-  const [isMuted, setIsMuted] = useState(false);
-  const [volume, setVolume] = useState(0.7);
+  const { volume, isMuted, setVolume, setIsMuted, audioRef } =
+    useContext(PlayerContext);
 
-  useEffect(() => {
-    if (audioRef?.current) {
-      audioRef.current.volume = isMuted ? 0 : volume;
-    }
-  }, [volume, isMuted, audioRef]);
+  const volumeBar = useRef(null);
 
   const handleVolumeChange = (e) => {
     const rect = volumeBar.current.getBoundingClientRect();
     const pos = (e.clientX - rect.left) / rect.width;
     const newVolume = Math.min(1, Math.max(0, pos));
     setVolume(newVolume);
-    setIsMuted(newVolume === 0);
-  };
+    if (newVolume === 0) {
+      setIsMuted(true);
+    } else if (isMuted) {
+      setIsMuted(false);
+  } };
 
   const toggleMute = () => {
     setIsMuted(!isMuted);
@@ -29,15 +26,15 @@ const VolumeControl = () => {
 
   return (
     <div className="player__volume-controls">
-      <button 
+      <button
         className="player__volume-button"
         onClick={toggleMute}
-        aria-label={isMuted ? 'Unmute' : 'Mute'}
+        aria-label={isMuted ? "Unmute" : "Mute"}
       >
         <FontAwesomeIcon icon={isMuted ? faVolumeXmark : faVolumeHigh} />
       </button>
-      
-      <div 
+
+      <div
         ref={volumeBar}
         className="player__volume-bar"
         onClick={handleVolumeChange}
@@ -47,7 +44,7 @@ const VolumeControl = () => {
         aria-valuenow={isMuted ? 0 : volume}
         aria-label="Volume control"
       >
-        <div 
+        <div
           className="player__volume-fill"
           style={{ width: `${isMuted ? 0 : volume * 100}%` }}
         ></div>

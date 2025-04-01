@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Player from '../player/Player';
+import Player from '../features/player/Player';
  
 const Layout = ({ children }) => {
   return (

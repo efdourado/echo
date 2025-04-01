@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
-export const useAudio = (src, { volume = 1, isPlaying = false }) => {
+export const useAudio = ({
+  src,
+  volume,
+  isPlaying,
+  onPlay,
+  onPause,
+  onEnded,
+}) => {
   const audioRef = useRef(null);
   const [isReady, setIsReady] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -8,83 +15,89 @@ export const useAudio = (src, { volume = 1, isPlaying = false }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const audio = new Audio();
-    audioRef.current = audio;
-    audio.preload = "auto";
-
-    const updateMediaSession = () => {
-      if ("mediaSession" in navigator && audioRef.current?.src) {
-        navigator.mediaSession.metadata = new MediaMetadata({
-          title: "Current Track",
-          artist: "Unknown Artist",
-    }); } };
-
-    const handleEvents = () => {
-      audio.addEventListener("loadedmetadata", () => {
-        setDuration(audio.duration);
-        setIsReady(true);
-        updateMediaSession();
-      });
-
-      audio.addEventListener("timeupdate", () => {
-        setCurrentTime(audio.currentTime);
-      });
-
-      audio.addEventListener("error", () => {
-        setError("Audio playback error");
-        setIsReady(false);
-      });
-
-      audio.addEventListener("ended", () => {
-        setIsPlaying(false);
-    }); };
-
-    handleEvents();
-
+    audioRef.current = new Audio();
     return () => {
-      audio.pause();
-      audio.src = "";
-      audio.removeEventListener("loadedmetadata", handleEvents);
-      audio.removeEventListener("timeupdate", handleEvents);
-      audio.removeEventListener("error", handleEvents);
-      audio.removeEventListener("ended", handleEvents);
-  }; }, []);
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.removeAttribute("src");
+        audioRef.current.load();
+  } }; }, []);
 
   useEffect(() => {
-    if (!audioRef.current || !src) return;
+    const audio = audioRef.current;
+    if (!audio || !src) return;
 
     setIsReady(false);
     setError(null);
-    audioRef.current.src = src;
-    audioRef.current.load();
-  }, [src]);
+    audio.src = src;
+    audio.load();
+
+    const handleLoadedMetadata = () => {
+      setDuration(audio.duration);
+      setIsReady(true);
+      if (isPlaying) {
+        audio.play().catch((err) => {
+          setError("Failed to play audio");
+          console.error("Audio play error:", err);
+    }); } };
+
+    const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
+    const handleError = () => setError("Error loading audio");
+
+    audio.addEventListener("loadedmetadata", handleLoadedMetadata);
+    audio.addEventListener("timeupdate", handleTimeUpdate);
+    audio.addEventListener("error", handleError);
+
+    return () => {
+      audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
+      audio.removeEventListener("timeupdate", handleTimeUpdate);
+      audio.removeEventListener("error", handleError);
+    };
+  }, [src, isPlaying]);
 
   useEffect(() => {
-    if (!audioRef.current || !isReady) return;
+    const audio = audioRef.current;
+    if (!audio || !isReady) return;
 
-    const controlPlayback = async () => {
-      try {
-        if (isPlaying) {
-          await audioRef.current.play();
-        } else {
-          audioRef.current.pause();
-        }
-      } catch (err) {
-        setError(`Playback error: ${err.message}`);
-        setIsPlaying(false);
-    } };
-
-    controlPlayback();
+    if (isPlaying) {
+      audio.play().catch((err) => {
+        setError("Failed to play audio");
+        console.error("Audio play error:", err);
+      });
+    } else {
+      audio.pause();
+    }
   }, [isPlaying, isReady]);
 
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
-  } }, [volume]);
+    }
+  }, [volume]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handlePlay = () => onPlay?.();
+    const handlePause = () => onPause?.();
+    const handleEnded = () => onEnded?.();
+
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("pause", handlePause);
+    audio.addEventListener("ended", handleEnded);
+
+    return () => {
+      audio.removeEventListener("play", handlePlay);
+      audio.removeEventListener("pause", handlePause);
+      audio.removeEventListener("ended", handleEnded);
+    };
+  }, [onPlay, onPause, onEnded]);
 
   const seek = (time) => {
-    if (audioRef.current && !isNaN(time)) {
-      audioRef.current.currentTime = Math.max(0, Math.min(time, duration));
+    if (isReady && audioRef.current) {
+      audioRef.current.currentTime = time;
+      setCurrentTime(time);
   } };
 
   return {
@@ -92,6 +105,6 @@ export const useAudio = (src, { volume = 1, isPlaying = false }) => {
     isReady,
     duration,
     currentTime,
-    error,
     seek,
+    error,
 }; };

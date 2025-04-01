@@ -19,7 +19,6 @@ const SongPage = () => {
   }, [currentSong, currentTrack, playTrack]);
 
   useEffect(() => {
-    // Auto-play only if no song is currently playing
     if (currentSong && !isPlaying) {
       handlePlay();
     }
