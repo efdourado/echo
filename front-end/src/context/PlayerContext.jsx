@@ -43,7 +43,7 @@ export const PlayerProvider = ({ children }) => {
       randomId2FromArtist: getRandomSongId(track.artist, track._id),
     });
     setIsPlaying(true);
-    setHistory(prev => [track, ...prev].slice(0, 50)); // Keep last 50 tracks
+    setHistory(prev => [track, ...prev].slice(0, 50));
   }, [getRandomSongId]);
 
   const pauseTrack = useCallback(() => {
@@ -77,7 +77,6 @@ export const PlayerProvider = ({ children }) => {
   }, []);
 
   const contextValue = useMemo(() => ({
-    // State
     currentTrack,
     isPlaying,
     queue,
@@ -125,17 +124,7 @@ export const PlayerProvider = ({ children }) => {
     <PlayerContext.Provider value={contextValue}>
       {children}
     </PlayerContext.Provider>
-  );
-};
-
-// Custom hook for consuming the context
-export const usePlayer = () => {
-  const context = React.useContext(PlayerContext);
-  if (!context) {
-    throw new Error('usePlayer must be used within a PlayerProvider');
-  }
-  return context;
-};
+); };
 
 PlayerProvider.propTypes = {
   children: PropTypes.node.isRequired,

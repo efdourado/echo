@@ -2,7 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import Header from "./Header";
 import Footer from "./Footer";
+
 import Showcase from "../common/Showcase";
+import EventsHero from "../hero/EventsHero"
+
 import ItemList from "../common/ItemList";
 import { artistArray } from "../../assets/db/artists";
 import { songsArray } from "../../assets/db/songs";
@@ -16,6 +19,7 @@ const MainLayout = ({ type }) => {
         title="Music Closer"
         description="A model designed to inspire and support music enthusiasts. Get samples, tips, and organize your ideas effortlessly"
         ctaText="Join Us | Sign Up"
+        bgImage="/sc.jpeg"
       />
 
       <div className="main-layout-content">
@@ -72,6 +76,21 @@ const MainLayout = ({ type }) => {
             />
           ) : null}
       </div>
+
+      <EventsHero
+  title="Próximos Eventos"
+  subtitle="Experiências musicais inesquecíveis que vão transformar sua conexão com a arte"
+  ctaText="Comprar Ingressos"
+  bgImage="/sc_pg.jpeg"
+  featuredEvent={{
+    day: "24",
+    month: "MAI",
+    name: "Festival Beats Urbanos",
+    location: "São Paulo - SP",
+    time: "22:00h",
+    artists: ["MC Zaac", "Luísa Sonza", "Djonga", "Tasha & Tracie"]
+  }}
+/>
 
       <Footer companyName="Echo" />
     </>

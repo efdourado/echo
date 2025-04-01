@@ -7,9 +7,7 @@ const ProgressBar = () => {
   const progressBar = useRef(null);
   const [currentTime, setCurrentTime] = useState(0);
   
-  const durationInSeconds = currentTrack?.duration 
-    ? Math.floor(timeInSeconds(currentTrack.duration))
-    : 0;
+  const durationInSeconds = currentTrack?.duration ? Math.floor(timeInSeconds(currentTrack.duration)) : 0;
 
   useEffect(() => {
     const updateProgress = () => {
@@ -17,8 +15,7 @@ const ProgressBar = () => {
         const progress = (audioRef.current.currentTime / durationInSeconds) * 100;
         progressBar.current.style.setProperty('--progress', `${progress}%`);
         setCurrentTime(audioRef.current.currentTime);
-      }
-    };
+    } };
 
     const intervalId = setInterval(updateProgress, 1000);
     return () => clearInterval(intervalId);
@@ -35,14 +32,12 @@ const ProgressBar = () => {
           const pos = (e.clientX - rect.left) / rect.width;
           if (audioRef.current) {
             audioRef.current.currentTime = pos * durationInSeconds;
-          }
-        }}
+        } }}
       >
         <div className="player__progress-fill"></div>
       </div>
       <span className="player__time">{currentTrack.duration}</span>
     </div>
-  );
-};
+); };
 
 export default ProgressBar;

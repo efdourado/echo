@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import fallbackImage from '../../assets/images/fb.png';
+import { formatDuration } from "../../helpers/time";
 
 const SongItem = React.memo(({ 
-  artist = "Unknown Artist",
+  artist = "unknown artist",
   image, 
   name, 
-  duration = 0, 
+  duration = "0", 
   _id, 
   isPlaying = false, 
   isCurrent = false,
@@ -17,11 +18,6 @@ const SongItem = React.memo(({
   onPlay,
   onMenuClick
 }) => {
-  const formatDuration = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
-    return `${mins}:${secs}`;
-  };
 
   const handlePlayClick = (e) => {
     e.preventDefault();
@@ -111,13 +107,6 @@ SongItem.propTypes = {
   progress: PropTypes.number,
   onPlay: PropTypes.func,
   onMenuClick: PropTypes.func
-};
-
-SongItem.defaultProps = {
-  duration: 0,
-  isPlaying: false,
-  isCurrent: false,
-  progress: 0
 };
 
 export default SongItem;

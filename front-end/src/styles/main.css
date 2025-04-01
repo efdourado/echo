@@ -4,6 +4,9 @@
 @import url("./components/common/item-list/single-item.css");
 @import url("./components/common/showcase.css");
 
+@import url("./components/hero/events-hero.css");
+
+
 @import url("./components/layout/footer.css");
 @import url("./components/layout/header.css");
 @import url("./components/layout/layout.css");

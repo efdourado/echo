@@ -53,7 +53,6 @@ const VolumeControl = () => {
         ></div>
       </div>
     </div>
-  );
-};
+); };
 
 export default VolumeControl;

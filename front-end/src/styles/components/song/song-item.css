@@ -20,8 +20,6 @@
 }
 
 
-
-
 .song-item__number {
   display: flex;
   justify-content: center;
@@ -42,16 +40,7 @@
   color: inherit;
 }
 
-.song-item__index {
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
 
-.song-item:hover .song-item__index {
-  opacity: 0;
-  transform: translateY(5px);
-}
 
 .song-item__play-icon {
   position: absolute;
@@ -189,23 +178,3 @@
 }
 
 
-
-/* Remove index-related styles and adjust play button */
-.song-item__number {
-  width: 24px; /* Fixed width for play button */
-}
-
-.song-item__play-icon {
-  opacity: 1; /* Always visible */
-  font-size: 1rem;
-  color: var(--primary-color);
-}
-
-.song-item:hover .song-item__play-icon {
-  transform: scale(1.1);
-}
-
-/* Remove these if they exist */
-.song-item__index {
-  display: none;
-}

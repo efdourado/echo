@@ -9,13 +9,13 @@ const SongList = ({
   isPlaying,
   onPlay,
   onMenuClick,
-  title = "Songs",
+  title,
   showCount = true,
   initialVisibleItems = 5,
   incrementStep = 5
 }) => {
   if (!songsArray || songsArray.length === 0) {
-    return <div className="empty-message">No songs available</div>;
+    return <div className="empty-message">no songs available</div>;
   }
   const [visibleItems, setVisibleItems] = useState(initialVisibleItems);
   const canShowMore = visibleItems < songsArray.length;

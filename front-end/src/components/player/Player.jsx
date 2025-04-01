@@ -1,4 +1,3 @@
-// components/player/Player.jsx
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +8,6 @@ import VolumeControl from './VolumeControl';
 
 const Player = () => {
   const { currentTrack, pauseTrack, isPlaying } = usePlayer();
-
   if (!currentTrack) return null;
 
   return (
@@ -30,7 +28,6 @@ const Player = () => {
         </div>
       </div>
     </div>
-  );
-};
+); };
 
 export default Player;
