@@ -1,10 +1,12 @@
 export const songsArray = [
   {
-    id: 0,
-    image: "https://od.lk/s/OThfNDExMDYwMDBf/unhas-de-fibra-img.jpg",
+    id: 12312312,
+    image: "https://od.lk/s/OThfNDExMTE4Mjhf/a1.jpeg",
     name: "Unhas de Fibra",
     duration: "01:48",
     artist: "Lil Léo",
+    album: "",
+    releaseYear: 2024,
     audio: "https://od.lk/s/OThfNDExMDU5OTVf/unhas-de-fibra.m4a",
     lyrics: `
       Mulher delicada, com suas unhas de fibra, pode vim, menina, confirma, tô fazendo trap, brisando na wave, sei de tudo, tenho as visões da Raven.
@@ -27,11 +29,13 @@ export const songsArray = [
     `,
   },
   {
-    id: 1,
-    image: "https://od.lk/s/OThfNDExMDU5OThf/free-fire-img.jpg",
+    id: 123122332,
+    image: "https://od.lk/s/OThfNDExMTE4Mjhf/a1.jpeg",
     name: "Free Fire",
     duration: "01:58",
     artist: "Lil Léo",
+    album: "",
+    releaseYear: 2021,
     audio: "https://od.lk/s/OThfNDExMDU5OTNf/free-fire.m4a",
     lyrics: `
       Mano, eu tô jogando Free Fire por vadia, não sofro mais, já foi duas kill pro pai, nessa noite eu tô demais.
@@ -50,11 +54,13 @@ export const songsArray = [
     `,
   },
   {
-    id: 2,
-    image: "https://od.lk/s/OThfNDExMDU5OTlf/nada-de-graca-img.jpg",
+    id: 23101329,
+    image: "https://od.lk/s/OThfNDExMTE4Mjhf/a1.jpeg",
     name: "Nada de Graça",
     duration: "02:24",
     artist: "Lil Léo",
+    album: "",
+    releaseYear: 2022,
     audio: "https://od.lk/s/OThfNDExMDU5OTRf/nada-de-graca.m4a",
     lyrics: `
       Eu tô com a minha baby, tô com a minha shorty, eu vou passar no shopping e comprar um Margiela, tô fazendo trap por mim e por ela, eu sou a tampa e ela é a panela.
@@ -70,13 +76,22 @@ export const songsArray = [
       Aí, mano, bagulho neurótico, hoje tem revoada, pode chamar as gata.
       Hoje vai rolar salseiro, só chama as safada, as danada solteira, menos casada, pode pá.
     `,
+    streaming: {
+      spotify: "",
+      appleMusic: "",
+      youtube: ""
+    },
+    popularity: 6,
+    plays: "89,226,229",
   },
   {
-    id: 3,
-    image: "https://od.lk/s/OThfNDExMDU5OTdf/bad-bitch-img.jpg",
+    id: 32010213,
+    image: "https://od.lk/s/OThfNDExMTE4Mjhf/a1.jpeg",
     name: "Bad Bitch +Sped",
     duration: "04:01",
     artist: "Lil Léo",
+    album: "",
+    releaseYear: 2024,
     audio: "https://od.lk/s/OThfNDExMDU5OTJf/bad-bitch.m4a",
     lyrics: `
       Faço cash, faço grana, e ela já sabe quem é, eu nunca mais comprei maconha porque eu pego do pé, ultimamente eu vivo em trevas, eu preciso mais de fé, eu nunca vou casar com ela porque ela é uma bad.
@@ -101,229 +116,251 @@ export const songsArray = [
 
       Bad bitch, yeee, só ando com joias em mim, vivendo essa loucura, yeee, do jeito que eu sempre quis.
     `,
+    streaming: {
+      spotify: "",
+      appleMusic: "",
+      youtube: ""
+    },
+    popularity: 3,
+    plays: "22,236,329",
+  },
+  {
+    id: 1,
+    image: "",
+    name: "Neon Dreams",
+    duration: "03:45",
+    artist: "Nova Wave",
+    album: "Electric Horizon",
+    releaseYear: 2023,
+    audio: "",
+    lyrics: "Neon lights in the dark...",
+    streaming: {
+      spotify: "",
+      appleMusic: "",
+      youtube: ""
+    },
+    popularity: 85,
+    plays: "12,456,789",
+    credits: {
+      producer: "Nova Wave",
+      writers: ["Alex Nova", "Sarah Wave"],
+      label: "Future Sound Records"
+    }
+  },
+  {
+    id: 2,
+    image: "",
+    name: "Midnight Sonata",
+    duration: "04:12",
+    artist: "The Midnight Strings",
+    album: "Nocturnal Symphonies",
+    releaseYear: 2022,
+    audio: "https://example.com/audio/midnightsonata.mp3",
+    lyrics: "The moon whispers secrets...",
+    streaming: {
+      spotify: "https://open.spotify.com/track/456",
+      appleMusic: "https://music.apple.com/track/456",
+      youtube: "https://youtube.com/watch?v=456"
+    },
+    popularity: 1,
+    plays: "638,765,432",
+    credits: {
+      producer: "The Midnight Strings",
+      writers: ["Elena Violin", "Marcus Cello"],
+      label: "Classical Cross Records"
+    }
+  },
+  {
+    id: 3,
+    image: "",
+    name: "Lunar Love",
+    duration: "03:28",
+    artist: "Riya Moon",
+    album: "Celestial",
+    releaseYear: 2023,
+    audio: "https://example.com/audio/lunarlove.mp3",
+    lyrics: "Your touch is like moonlight...",
+    streaming: {
+      spotify: "https://open.spotify.com/track/789",
+      appleMusic: "https://music.apple.com/track/789",
+      youtube: "https://youtube.com/watch?v=789"
+    },
+    popularity: 92,
+    plays: "25,678,901",
+    credits: {
+      producer: "Riya Moon",
+      writers: ["Riya Moon"],
+      label: "Soulful Records"
+    },
+    awards: ["2023 Soul Train Music Award"]
   },
   {
     id: 4,
-    image: "https://i.scdn.co/image/ab67616d00001e0299c540c0f78793fcea84a920",
-    name: "Aquela Pessoa - Ao Vivo",
-    duration: "02:46",
-    artist: "Henrique & Juliano",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/ultima-saudade.mp3",
-    lyrics:"",
+    image: "",
+    name: "Desert Mirage",
+    duration: "05:34",
+    artist: "Desert Echo",
+    album: "Sands of Time",
+    releaseYear: 2021,
+    audio: "https://example.com/audio/desertmirage.mp3",
+    lyrics: "The heat waves dance...",
+    streaming: {
+      spotify: "https://open.spotify.com/track/101",
+      appleMusic: "https://music.apple.com/track/101",
+      youtube: "https://youtube.com/watch?v=101"
+    },
+    popularity: 65,
+    plays: "4,321,098",
+    credits: {
+      producer: "Desert Echo",
+      writers: ["Jake Guitar", "Leo Bass"],
+      label: "Psychedelic Rock Records"
+    },
+    livePerformance: true
   },
   {
     id: 5,
-    image: "https://i.scdn.co/image/ab67616d00001e02af41105c5cd91b28f2cf219d",
-    name: "Haverá Sinais - Ao Vivo",
-    duration: "03:11",
-    artist: "Jorge & Mateus",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/cantada-boba.mp3",
-    lyrics:"",
+    image: "",
+    name: "Galaxy Heart",
+    duration: "03:15",
+    artist: "K-pop X",
+    album: "Cosmic Love",
+    releaseYear: 2023,
+    audio: "https://example.com/audio/galaxyheart.mp3",
+    lyrics: "You're my shining star...",
+    streaming: {
+      spotify: "https://open.spotify.com/track/202",
+      appleMusic: "https://music.apple.com/track/202",
+      youtube: "https://youtube.com/watch?v=202"
+    },
+    popularity: 95,
+    plays: "78,901,234",
+    credits: {
+      producer: "Star Entertainment",
+      writers: ["K-pop X", "Hitmakers Inc"],
+      label: "K-pop Global"
+    },
+    mvViews: "450,000,000"
   },
   {
     id: 6,
-    image: "https://i.scdn.co/image/ab67616d00001e02afcda189d3e44b4abefddecb",
-    name: "Logo Eu",
-    duration: "02:35",
-    artist: "Jorge & Mateus",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/cantada-boba.mp3",
-    lyrics:"",
+    image: "",
+    name: "Whispering Pines",
+    duration: "04:01",
+    artist: "Luna May",
+    album: "Folklore",
+    releaseYear: 2022,
+    audio: "https://example.com/audio/whisperingpines.mp3",
+    lyrics: "The wind through the trees...",
+    streaming: {
+      spotify: "https://open.spotify.com/track/303",
+      appleMusic: "https://music.apple.com/track/303",
+      youtube: "https://youtube.com/watch?v=303"
+    },
+    popularity: 72,
+    plays: "6,543,210",
+    credits: {
+      producer: "Luna May",
+      writers: ["Luna May"],
+      label: "Indie Folk Records"
+    },
+    acousticVersion: true
   },
   {
     id: 7,
-    image: "https://i.scdn.co/image/ab67616d00001e0235bc4bc847696d28e2882b16",
-    name: "Última Noite",
-    duration: "02:37",
-    artist: "NATTAN",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/ultima-noite.mp3",
-    lyrics:"",
+    image: "",
+    name: "Chemical Reaction",
+    duration: "03:52",
+    artist: "Beat Chemistry",
+    album: "Lab Notes",
+    releaseYear: 2023,
+    audio: "https://example.com/audio/chemicalreaction.mp3",
+    lyrics: "You mix with me...",
+    streaming: {
+      spotify: "https://open.spotify.com/track/404",
+      appleMusic: "https://music.apple.com/track/404",
+      youtube: "https://youtube.com/watch?v=404"
+    },
+    popularity: 88,
+    plays: "15,678,901",
+    credits: {
+      producer: "Beat Chemistry",
+      writers: ["DJ Beats", "MC Chemistry"],
+      label: "EDM Worldwide"
+    },
+    bpm: 128,
+    key: "D minor"
   },
   {
     id: 8,
-    image: "https://i.scdn.co/image/ab67616d00001e025645e61562deebdda78755b6",
-    name: "Coração Partido (Corazón Partío) - Ao Vivo",
-    duration: "03:15",
-    artist: "Grupo Menos É Mais",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/adorei.mp3",
-    lyrics:"",
+    image: "",
+    name: "Velvet Nights",
+    duration: "04:23",
+    artist: "The Velvets",
+    album: "Retro Soul Revival",
+    releaseYear: 2021,
+    audio: "https://example.com/audio/velvetnights.mp3",
+    lyrics: "Smooth like velvet...",
+    streaming: {
+      spotify: "https://open.spotify.com/track/505",
+      appleMusic: "https://music.apple.com/track/505",
+      youtube: "https://youtube.com/watch?v=505"
+    },
+    popularity: 68,
+    plays: "3,456,789",
+    credits: {
+      producer: "The Velvets",
+      writers: ["Soul Singer", "Funk Master"],
+      label: "Groove Records"
+    },
+    featuredIn: ["NPR Tiny Desk Concert"]
   },
   {
     id: 9,
-    image: "https://i.scdn.co/image/ab67616d00001e02d2fc1ee38f06c4c760380925",
-    name: "Nada Com Nada - Ao Vivo",
-    duration: "02:41",
-    artist: "Grupo Menos É Mais",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/adorei.mp3",
-    lyrics:"",
+    image: "",
+    name: "Digital Love",
+    duration: "03:37",
+    artist: "Synthia",
+    album: "Algorithm of Love",
+    releaseYear: 2023,
+    audio: "https://example.com/audio/digitallove.mp3",
+    lyrics: "010101...",
+    streaming: {
+      spotify: "https://open.spotify.com/track/606",
+      appleMusic: "https://music.apple.com/track/606",
+      youtube: "https://youtube.com/watch?v=606"
+    },
+    popularity: 82,
+    plays: "9,876,543",
+    credits: {
+      producer: "AI Music Labs",
+      writers: ["Synthia AI"],
+      label: "Future Music"
+    },
+    isVirtualArtist: true
   },
   {
     id: 10,
-    image: "https://i.scdn.co/image/ab67616d00001e0239833b5940945cf013e8406c",
-    name: "Barulho Do Foguete - Ao Vivo",
-    duration: "02:13",
-    artist: "Zé Neto & Cristiano",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/amizade-com-ex.mp3",
-    lyrics:"",
-  },
-  {
-    id: 11,
-    image: "https://i.scdn.co/image/ab67616d00001e02ff93ff99ca25cbd3607247bb",
-    name: "Notificação Preferida - Ao Vivo",
-    duration: "03:02",
-    artist: "Zé Neto & Cristiano",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/amizade-com-ex.mp3",
-    lyrics:"",
-  },
-  {
-    id: 12,
-    image: "https://i.scdn.co/image/ab67616d00001e0273f044b863be0033982cd767",
-    name: "Foi Intenso - Ao Vivo",
-    duration: "02:12",
-    artist: "Zé Neto & Cristiano",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/amizade-com-ex.mp3",
-    lyrics:"",
-  },
-  {
-    id: 13,
-    image: "https://i.scdn.co/image/ab67616d00001e02ff93ff99ca25cbd3607247bb",
-    name: "Largado Às Traças - Ao Vivo",
-    duration: "03:54",
-    artist: "Zé Neto & Cristiano",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/amizade-com-ex.mp3",
-    lyrics:"",
-  },
-  {
-    id: 14,
-    image: "https://i.scdn.co/image/ab67616d00001e0239833b5940945cf013e8406c",
-    name: "Oi Balde - Ao Vivo",
-    duration: "02:39",
-    artist: "Zé Neto & Cristiano",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/amizade-com-ex.mp3",
-    lyrics:"",
-  },
-  {
-    id: 15,
-    image: "https://i.scdn.co/image/ab67616d00001e027d96c3456ae2572847148954",
-    name: "Decide Aí - Na Praia / Ao Vivo",
-    duration: "02:42",
-    artist: "Matheus & Kauan",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/universo.mp3",
-    lyrics:"",
-  },
-  {
-    id: 16,
-    image: "https://i.scdn.co/image/ab67616d00001e02e295ee75598a12d933800298",
-    name: "Mentirosa - Ao Vivo",
-    duration: "02:45",
-    artist: "Hugo & Guilherme",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/mentirosa.mp3",
-    lyrics:"",
-  },
-  {
-    id: 17,
-    image: "https://i.scdn.co/image/ab67616d00001e02376d7c9f79569d0a24db5c53",
-    name: "Embaixador (Mãe)",
-    duration: "03:07",
-    artist: "Gusttavo Lima",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/embaixador.mp3",
-    lyrics:"",
-  },
-  {
-    id: 18,
-    image: "https://i.scdn.co/image/ab67616d00001e025840f88453448723ce907a53",
-    name: "Balada - Ao Vivo",
-    duration: "03:21",
-    artist: "Gusttavo Lima",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/embaixador.mp3",
-    lyrics:"",
-  },
-  {
-    id: 19,
-    image: "https://i.scdn.co/image/ab67616d00001e0278a62cd11c719962d1d36aba",
-    name: "Canudinho - Ao Vivo",
-    duration: "02:04",
-    artist: "Gusttavo Lima",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/embaixador.mp3",
-    lyrics:"",
-  },
-  {
-    id: 20,
-    image: "https://i.scdn.co/image/ab67616d00001e02ab7c9976c44bfbe90f93dbdc",
-    name: "Termina Comigo Antes",
-    duration: "03:07",
-    artist: "Gusttavo Lima",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/embaixador.mp3",
-    lyrics:"",
-  },
-  {
-    id: 21,
-    image: "https://i.scdn.co/image/ab67616d00001e02cca35237571dbce12a43fbb4",
-    name: "Leão",
-    duration: "02:46",
-    artist: "Marília Mendonça",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/dois-enganados.mp3",
-    lyrics:"",
-  },
-  {
-    id: 22,
-    image: "https://i.scdn.co/image/ab67616d00001e027b4293f65f8fe7003c29279c",
-    name: "Infiel - Ao Vivo",
-    duration: "03:21",
-    artist: "Marília Mendonça",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/dois-enganados.mp3",
-    lyrics:"",
-  },
-  {
-    id: 23,
-    image: "https://i.scdn.co/image/ab67616d00001e027b4293f65f8fe7003c29279c",
-    name: "Como Faz Com Ela - Ao Vivo",
-    duration: "02:30",
-    artist: "Marília Mendonça",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/dois-enganados.mp3",
-    lyrics:"",
-  },
-  {
-    id: 24,
-    image: "https://i.scdn.co/image/ab67616d00001e021e23e8a7efc947b1d7e5836e",
-    name: "Supera - Ao Vivo",
-    duration: "02:27",
-    artist: "Marília Mendonça",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/dois-enganados.mp3",
-    lyrics:"",
-  },
-  {
-    id: 25,
-    image: "https://i.scdn.co/image/ab67616d00001e021e8897179af39a4aaa591be7",
-    name: "De Quem É A Culpa?",
-    duration: "03:40",
-    artist: "Marília Mendonça",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/dois-enganados.mp3",
-    lyrics:"",
-  },
-  {
-    id: 26,
-    image: "https://i.scdn.co/image/ab67616d00001e0293b7f0d53b20302ee6e28f13",
-    name: "Tudo Que Você Quiser - Ao Vivo",
-    duration: "04:09",
-    artist: "Luan Santana",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/parece.mp3",
-    lyrics:"",
-  },
-  {
-    id: 27,
-    image: "https://i.scdn.co/image/ab67616d00001e021711f153c860d22a47e70893",
-    name: "Eu, Você, O Mar e Ela",
-    duration: "03:07",
-    artist: "Luan Santana",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/parece.mp3",
-    lyrics:"",
-  },
-  {
-    id: 28,
-    image: "https://i.scdn.co/image/ab67616d00001e02c847c97de21b491fc0daf8b5",
-    name: "Chuva de Arroz - Ao Vivo",
-    duration: "03:06",
-    artist: "Luan Santana",
-    audio: "https://jornada-fullstack.s3.us-east-2.amazonaws.com/parece.mp3",
-    lyrics:"",
-}, ];
+    image: "",
+    name: "Sands of Time",
+    duration: "05:12",
+    artist: "Cairo Nights",
+    album: "Eastern Echoes",
+    releaseYear: 2022,
+    audio: "https://example.com/audio/sandsoftime.mp3",
+    lyrics: "The desert remembers...",
+    streaming: {
+      spotify: "https://open.spotify.com/track/707",
+      appleMusic: "https://music.apple.com/track/707",
+      youtube: "https://youtube.com/watch?v=707"
+    },
+    popularity: 75,
+    plays: "7,654,321",
+    credits: {
+      producer: "Cairo Nights",
+      writers: ["Ahmed Oud", "Layla Vocals"],
+      label: "World Fusion"
+    },
+    culturalInstruments: ["Oud", "Darbuka", "Ney"]
+  }
+];

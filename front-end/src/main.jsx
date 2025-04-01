@@ -1,10 +1,16 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./styles/main.css";
-import App from "./App.jsx";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+// import { ThemeProvider } from './context/ThemeContext';
+import './styles/main.css';
+import App from './App';
 
-createRoot(document.getElementById("root")).render(
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
   <StrictMode>
-    <App />
+    {/* <ThemeProvider> */}
+      <App />
+    {/* </ThemeProvider> */}
   </StrictMode>
 );

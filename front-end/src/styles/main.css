@@ -1,16 +1,22 @@
-@import url("./base/variables.css");
-@import url("./base/reset.css");
+@import url("./base.css");
+
+@import url("./components/common/item-list/item-list.css");
+@import url("./components/common/item-list/single-item.css");
+@import url("./components/common/showcase.css");
+
+@import url("./components/layout/footer.css");
+@import url("./components/layout/header.css");
+@import url("./components/layout/layout.css");
+@import url("./components/layout/sidebar.css");
+@import url("./components/layout/main-layout.css");
+
+
+@import url("./components/player/player.css");
+
+@import url("./components/song/song-item.css");
+@import url("./components/song/song-list.css");
 
 @import url('./components/buttons.css');
-@import url("./components/sidebar.css");
-@import url("./components/header.css");
-@import url("./components/showcase.css");
-@import url("./components/footer.css");
-@import url("./components/item-list.css");
-@import url("./components/single-item.css");
-@import url("./components/song-item.css");
-@import url("./components/song-list.css");
-@import url("./components/player.css");
 
 @import url("./pages/artist.css");
 @import url("./pages/song.css");

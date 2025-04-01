@@ -1,9 +1,0 @@
-.song-list__see-more {
-  font-weight: 700;
-  margin-left: 25px;
-  margin-top: 20px;
-  cursor: pointer;
-}
-.song-list__see-more:hover {
-  text-decoration: underline;
-}

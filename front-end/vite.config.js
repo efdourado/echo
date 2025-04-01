@@ -5,4 +5,8 @@ export default defineConfig({
   plugins: [react()],
   build: {
     target: "esnext",
-}, });
+  },
+  server: {
+    watch: {
+      usePolling: true,
+}, }, });

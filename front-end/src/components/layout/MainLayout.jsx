@@ -1,0 +1,85 @@
+import React from "react";
+import PropTypes from "prop-types";
+import Header from "./Header";
+import Footer from "./Footer";
+import Showcase from "../common/Showcase";
+import ItemList from "../common/ItemList";
+import { artistArray } from "../../assets/db/artists";
+import { songsArray } from "../../assets/db/songs";
+import SongList from "../song/SongList";
+
+const MainLayout = ({ type }) => {
+  return (
+    <>
+      <Header />
+      <Showcase
+        title="Music Closer"
+        description="A model designed to inspire and support music enthusiasts. Get samples, tips, and organize your ideas effortlessly"
+        ctaText="Join Us | Sign Up"
+      />
+
+      <div className="main-layout-content">
+        {type === "songs" || type === undefined ? (
+          <ItemList
+            title="Popular"
+            items={7}
+            itemsArray={songsArray}
+            path="/songs"
+            idPath="/song"
+            type="songs"
+            showYear={true}
+            showPlays={true}
+            seeMorePlacement ="top"
+          />
+        ) : null}
+
+        <div className="content-grid">
+          <section className="recent-songs-section">
+            <SongList
+              title="Recently Played"
+              songsArray={songsArray}
+              onPlay={(songId) => {
+                const song = songsArray.find((s) => s._id === songId);
+                if (song) playTrack(song);
+              }}
+              showCount={false}
+            />
+          </section>
+          {type === "songs" || type === undefined ? (
+            <ItemList
+              title="Albums"
+              items={2}
+              itemsArray={songsArray}
+              path="/songs"
+              idPath="/song"
+              type="songs"
+              showYear={true}
+              showPlays={true}
+              seeMorePlacement ="bottom"
+            />
+        ) : null}
+        </div>
+        {type === "artists" || type === undefined ? (
+            <ItemList
+              title="Artists"
+              items={7}
+              itemsArray={artistArray}
+              path="/artists"
+              idPath="/artist"
+              type="artists"
+              rounded={true}
+              seeMorePlacement ="top"
+            />
+          ) : null}
+      </div>
+
+      <Footer companyName="Solo" />
+    </>
+  );
+};
+
+MainLayout.propTypes = {
+  type: PropTypes.oneOf(["songs", "artists"]),
+};
+
+export default MainLayout;
