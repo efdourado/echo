@@ -1,64 +1,105 @@
 .item-list {
   width: 100%;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden; /* Novo */
+
 }
+
+
 
 .item-list__header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.item-list__header-right {
+  display: flex;
+  flex-direction: column;
 }
 
 .item-list__title {
   font-size: 1.5rem;
   font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+
 }
 
+.item-list__subtitle {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-primary);
+}
+
+
+.item-list__grid-container {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.5rem;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  width: 100%; /* Novo */
+  box-sizing: border-box;
+}
+
+.item-list__grid-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.item-list__grid-container::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-color, rgba(255, 255, 255, 0.2));
+  border-radius: 3px;
+}
+
+
+
+
+
 .item-list__see-more {
-  background: none;
-  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   color: var(--accent-color);
   font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  border-radius: 4px;
+  text-decoration: none;
+  padding: 0.5rem 0;
+}
+
+.item-list__see-more svg {
+  width: 1em;
+  height: 1em;
+  transition: transform 0.2s ease;
+}
+
+.item-list__see-more:hover svg {
+  transform: translateX(2px);
 }
 
 .item-list__footer {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
-  margin-bottom: 3%;
+  margin-top: 1.5rem;
+  padding: 0 1rem;
 }
 
-.item-list__footer .item-list__see-more {
-  background: none;
-  border: none;
-  color: var(--accent-color);
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 12px;
-  margin-top: 15px;
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  text-align: center;
-  transition: all 0.2s;
-  border-radius: 4px;
+.item-list__see-more--full {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  font-size: 0.9rem;
 }
 
-.item-list__footer .item-list__see-more:hover {
-  background-color: var(--bg-hover);
-  color: var(--accent-color-light);
+.item-list__see-more--full:hover {
+  border-color: var(--accent-color);
+  background: rgba(var(--accent-rgb), 0.05);
 }
 
-.item-list__footer .item-list__see-more:active {
-  transform: scale(0.98);
-}
-
-.item-list__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 1.5rem;
+/* Rounded Artist Items */
+.item-list--rounded .single-item__image-container {
+  border-radius: 50% !important;
 }

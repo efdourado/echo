@@ -101,6 +101,10 @@ Your art speaks for your voice — and sometimes, through it
           </div>
         </div>
 
+        </div>
+        <div className="footer-divider"/>
+        <div className="footer-container">
+
         <div className="copyright-bar">
           <span className="copyright-text">&copy; {year} {companyName}. All rights reserved.</span>
           <span className="copyright-text">Designed by @efdourado</span>

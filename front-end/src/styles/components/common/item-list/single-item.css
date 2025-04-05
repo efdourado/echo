@@ -1,25 +1,27 @@
 .single-item {
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  width: 100%;
-  max-width: 180px;
+  gap: 0.75rem;
+  width: 160px;
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .single-item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 }
 
 .single-item__image-container {
   position: relative;
   width: 100%;
   aspect-ratio: 1/1;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: var(--bg-secondary);
 }
 
 .single-item__image {
@@ -30,7 +32,21 @@
 }
 
 .single-item:hover .single-item__image {
-  transform: scale(1.05);
+  transform: scale(1.08);
+}
+
+.single-item__info {
+  padding: 0 4px;
+  min-height: 60px;
+}
+
+.single-item__title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .single-item__artist {
@@ -42,8 +58,12 @@
   text-overflow: ellipsis;
 }
 
-.single-item--artist .single-item__title {
-  text-align: center;
+.single-item__metadata {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
 }
 
 .single-item__play-overlay {
@@ -55,6 +75,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .single-item:hover .single-item__play-overlay {
@@ -67,35 +88,11 @@
   filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.3));
 }
 
-.single-item__info {
-  padding: 0 4px;
+/* Rounded Artist Items */
+.item-list--rounded .single-item__image-container {
+  border-radius: 50% !important;
 }
 
-.single-item__title {
-  margin: 0;
-  font-size: 0.95rem;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.single-item__metadata {
-  display: flex;
-  gap: 8px;
-  margin-top: 4px;
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-}
-
-.single-item__year, .single-item__plays {
-  display: inline-block;
-}
-
-.single-item--artist .single-item__title {
-  text-align: center;
-}
-
-.single-item--artist .single-item__image-container {
-  border-radius: 50%;
+.item-list--rounded .single-item:hover .single-item__image {
+  transform: scale(1.05);
 }

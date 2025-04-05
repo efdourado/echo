@@ -7,6 +7,7 @@ import Artists from './pages/artists/Artists';
 import Artist from './pages/artists/Artist';
 import Songs from './pages/songs/Songs';
 import Song from './pages/songs/index';
+import Albums from './pages/albums/Albums';
 
 const App = () => {
   return (
@@ -14,16 +15,16 @@ const App = () => {
       <BrowserRouter>
         <Layout>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/artists" element={<Artists />} />
-            <Route path="/artist/:id" element={<Artist />} />
-            <Route path="/songs" element={<Songs />} />
-            <Route path="/song/:id" element={<Song />} />
+            <Route path='/'element={<Home />} />
+            <Route path='/artists' element={<Artists />} />
+            <Route path='/artist/:id' element={<Artist />} />
+            <Route path='/songs' element={<Songs />} />
+            <Route path='/song/:id' element={<Song />} />
+            <Route path='/albums' element={<Albums />} />
           </Routes>
         </Layout>
       </BrowserRouter>
     </PlayerProvider>
-  );
-};
+); };
 
 export default App;

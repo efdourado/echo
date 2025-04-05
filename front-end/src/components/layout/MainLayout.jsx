@@ -1,72 +1,70 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import Header from "./Header";
 import Footer from "./Footer";
-
-import Showcase from "../common/Showcase";
-import EventsHero from "../sections/hero/EventsHero";
-
 import ItemList from "../common/ItemList";
+import SongList from "../song/SongList";
+import HeroSection from "../sections/hero/HeroSection";
+
 import { artistArray } from "../../assets/db/artists";
 import { songsArray } from "../../assets/db/songs";
-import SongList from "../song/SongList";
 
 const MainLayout = ({ type }) => {
   return (
     <>
       <Header />
-      <Showcase
-        title="Music Closer"
-        description="A model designed to inspire and support music enthusiasts. Get samples, tips, and organize your ideas effortlessly"
+      <HeroSection
+        variant="welcome"
+        title="Music Closer than Ever"
+        subtitle="A model designed to inspire and support music enthusiasts. Get samples, tips, and organize your ideas effortlessly"
         ctaText="Join Us | Sign Up"
-        bgImage="/sc.jpeg"
+        bgImage="/bg.jpeg"
       />
 
-      <div className="main-layout-content">
-        {type === "songs" || type === undefined ? (
+      <main className="main-layout-content">
+        {(type === "songs" || !type) && (
           <ItemList
             title="Popular"
-            items={7}
+            subtitle="From viral anthems to chart-dominating hits, this is where the top 50 tracks live, breathe, and take over your playlist"
+            items={6}
             itemsArray={songsArray}
             path="/songs"
             idPath="/song"
             type="songs"
-            showYear={true}
-            showPlays={true}
+            showYear
+            showPlays
             seeMorePlacement="top"
           />
-        ) : null}
+        )}
 
-        <div className="content-grid">
-          <section className="recent-songs-section">
-            <SongList
-              title="Recently Played"
-              songs={songsArray.slice(0, 5)}
-              showCount={false}
-              onMenuClick={(songId, target) => {
-
-
-                console.log(`menu clicked for song ${songId}`, target);
-
-
-              }}
-            />
-          </section>
-          {type === "songs" || type === undefined ? (
+        {(!type || type === "albums") && (
+          <div className="content-grid">
             <ItemList
               title="Albums"
-              items={2}
+              items={4}
               itemsArray={songsArray}
-              path="/songs"
-              idPath="/song"
-              type="songs"
-              showYear={true}
-              showPlays={true}
+              path="/albums"
+              idPath="/albums"
+              type="albums"
+              showYear
+              showPlays
               seeMorePlacement="bottom"
             />
-          ) : null}
-        </div>
-        {type === "artists" || type === undefined ? (
+            <section className="recent-songs-section">
+              <SongList
+                title="Recently Played"
+                songs={songsArray.slice(0, 5)}
+                showCount={false}
+                onMenuClick={(songId, target) =>
+                  console.log(`menu clicked for song ${songId}`, target)
+                }
+              />
+            </section>
+          </div>
+        )}
+
+        {(!type || type === "artists") && (
           <ItemList
             title="Artists"
             items={7}
@@ -74,34 +72,18 @@ const MainLayout = ({ type }) => {
             path="/artists"
             idPath="/artist"
             type="artists"
-            rounded={true}
+            rounded
             seeMorePlacement="top"
           />
-        ) : null}
-      </div>
-
-      <EventsHero
-        title="Próximos Eventos"
-        subtitle="Experiências musicais inesquecíveis que vão transformar sua conexão com a arte"
-        ctaText="Comprar Ingressos"
-        bgImage="/sc_pg.jpeg"
-        featuredEvent={{
-          day: "24",
-          month: "MAI",
-          name: "Festival Beats Urbanos",
-          location: "São Paulo - SP",
-          time: "22:00h",
-          artists: ["MC Zaac", "Luísa Sonza", "Djonga", "Tasha & Tracie"],
-        }}
-      />
+        )}
+      </main>
 
       <Footer companyName="Echo" />
     </>
-  );
-};
+); };
 
 MainLayout.propTypes = {
-  type: PropTypes.oneOf(["songs", "artists"]),
+  type: PropTypes.oneOf(["songs", "artists", "albums"]),
 };
 
 export default MainLayout;

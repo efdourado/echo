@@ -70,7 +70,7 @@ const Header = ({ onSearch }) => {
           </button>
 
           <Link to="/login" className="btn-secondary">
-            Log In
+            Sign in
           </Link>
         </div>
       </div>

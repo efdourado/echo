@@ -1,28 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
-import PropTypes from 'prop-types';
-import fallbackImage from '../../../assets/images/fb.png';
+import React from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlay } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
+import fallbackImage from "../../../assets/images/fb.png";
 
-const SingleItem = ({ 
-  _id, 
-  name, 
-  image, 
-  idPath, 
-  artistName, 
+const SingleItem = ({
+  _id,
+  name,
+  image,
+  idPath,
+  artistName,
   type,
   releaseYear,
   plays,
   showYear,
-  showPlays
+  showPlays,
 }) => {
-  const isArtist = type === 'artists';
-  
+  const isArtist = type === "artists";
+
   return (
-    <Link 
-      to={`${idPath}/${_id}`} 
-      className={`single-item ${isArtist ? 'single-item--artist' : ''}`} 
+    <Link
+      to={`${idPath}/${_id}`}
+      className={`single-item ${isArtist ? "single-item--artist" : ""}`}
       aria-label={name}
     >
       <div className="single-item__image-container">
@@ -49,7 +49,6 @@ const SingleItem = ({
         {!isArtist && artistName && (
           <p className="single-item__artist">{artistName}</p>
         )}
-        
         {!isArtist && (
           <div className="single-item__metadata">
             {showYear && releaseYear && (
@@ -73,21 +72,21 @@ SingleItem.propTypes = {
   image: PropTypes.string,
   idPath: PropTypes.string.isRequired,
   artistName: PropTypes.string,
-  type: PropTypes.oneOf(['songs', 'artists', 'albums', 'playlists']),
+  type: PropTypes.oneOf(["songs", "artists", "albums", "playlists"]),
   releaseYear: PropTypes.number,
   plays: PropTypes.number,
   showYear: PropTypes.bool,
-  showPlays: PropTypes.bool
+  showPlays: PropTypes.bool,
 };
 
 SingleItem.defaultProps = {
-  image: '',
-  artistName: '',
-  type: 'songs',
+  image: "",
+  artistName: "",
+  type: "songs",
   releaseYear: null,
   plays: null,
   showYear: false,
-  showPlays: false
+  showPlays: false,
 };
 
 export default SingleItem;

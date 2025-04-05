@@ -1,5 +1,6 @@
 .main-layout-content {
-  padding: 3% 5%;
+  width: 100%;
+  padding: 3% 32px;
 }
 
 .content-grid {
@@ -8,11 +9,6 @@
   grid-template-columns: 1.5fr 1fr;
   gap: 2rem;
 }
-
-@media (min-width: 992px) {
-  .content-grid {
-    grid-template-columns: 1.5fr 1fr;
-} }
 
 .featured-section {
   margin-bottom: 3rem;
@@ -67,4 +63,17 @@
 
 .album-artist {
   width: 60%;
+}
+
+.content-grid {
+  gap: 3rem;
+  margin: 4rem 0;
+  padding: 0 0.5rem;
+}
+
+.recent-songs-section {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
